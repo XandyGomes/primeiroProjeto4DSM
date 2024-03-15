@@ -19,7 +19,7 @@ export const Input = styled.TextInput.attrs({
 })`
     flex: 1;
     height: 40px;
-    background: #eee;
+    background: #fff;
     border-radius: 4px;
     padding: 0 15px;
     border: 1px solid #eee;
