@@ -22,12 +22,12 @@ export default class Main extends Component {
         avatar: response.data.avatar_url
     };
 
-    this.state({
+    this.setState({  //eu tinha digitado apenas this.state ao invés de this.setState
         users: [...users, data],
         newUser: '',
     });
 
-    console.log(response.data)
+    console.log(data)
     
   };
 
