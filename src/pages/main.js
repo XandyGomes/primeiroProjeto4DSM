@@ -1,8 +1,21 @@
 import React, {Component} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import api from '../services/api'
+import api from '../services/api';
+import {Keyboard} from 'react-native';
 
-import {Container, Form, Input, SubmitButton} from './styles';
+import {
+  Container,
+  Form,
+  Input,
+  SubmitButton,
+  List,
+  User,
+  Avatar,
+  Name,
+  Bio,
+  ProfileButton,
+  ProfileButtonText,
+} from './styles';
 
 export default class Main extends Component {
   state = {
@@ -11,24 +24,25 @@ export default class Main extends Component {
   };
 
   handleAddUser = async () => {
-    const { users, newUser } = this.state
+    const {users, newUser} = this.state;
 
     const response = await api.get(`/users/${newUser}`);
 
     const data = {
-        name: response.data.name,
-        login: response.data.login,
-        bio: response.data.bio,
-        avatar: response.data.avatar_url
+      name: response.data.name,
+      login: response.data.login,
+      bio: response.data.bio,
+      avatar: response.data.avatar_url,
     };
 
-    this.setState({  //eu tinha digitado apenas this.state ao invés de this.setState
-        users: [...users, data],
-        newUser: '',
+    this.setState({
+      users: [...users, data],
+      newUser: '',
     });
 
-    console.log(data)
-    
+    Keyboard.dismiss();
+
+    console.log(data);
   };
 
   render() {
@@ -43,13 +57,30 @@ export default class Main extends Component {
             placeholder="Adicionar usuário"
             value={newUser}
             onChangeText={text => this.setState({newUser: text})}
-            returnKeyType='send'
+            returnKeyType="send"
             onSubmitEditing={this.handleAddUser}
           />
           <SubmitButton onPress={this.handleAddUser}>
             <Icon name="add" size={20} color="#fff" />
           </SubmitButton>
         </Form>
+
+        <List
+          showsVerticalScrollIndicator={false}
+          data={users}
+          keyExtractor={user => user.login}
+          renderItem={({item}) => (
+            <User>
+              <Avatar source={{uri: item.avatar}} />
+              <Name>{item.name}</Name>
+              <Bio>{item.bio}</Bio>
+
+              <ProfileButton onPress={() => {}}>
+                <ProfileButtonText>Ver perfil</ProfileButtonText>
+              </ProfileButton>
+            </User>
+          )}
+        />
       </Container>
     );
   }
