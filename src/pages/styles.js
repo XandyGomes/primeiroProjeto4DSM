@@ -82,3 +82,15 @@ export const ProfileButtonText = styled.Text`
   color: #fff;
   text-transform: uppercase;
 `;
+
+export const Stars = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+})``;
+export const Avatarperfil = styled.View``;
+export const Nameperfil = styled.View``;
+export const Bioperfil = styled.View``;
+export const Starred = styled.View``;
+export const OwnerAvatar = styled.View``;
+export const Info = styled.View``;
+export const Title = styled.View``;
+export const Author = styled.View``;

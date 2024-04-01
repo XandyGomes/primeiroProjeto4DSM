@@ -48,6 +48,14 @@ export default class Main extends Component {
 
       const response = await api.get(`/users/${newUser}`);
 
+      if (users.find(user => user.login === response.data.login)) {
+        alert('Usuário já adicionado!');
+        this.setState({
+          loading: false,
+        });
+        return;
+      }
+
       const data = {
         name: response.data.name,
         login: response.data.login,
@@ -104,7 +112,10 @@ export default class Main extends Component {
               <Name>{item.name}</Name>
               <Bio>{item.bio}</Bio>
 
-              <ProfileButton onPress={() => {}}>
+              <ProfileButton
+                onPress={() => {
+                  this.props.navigation.navigate('user', {user: item});
+                }}>
                 <ProfileButtonText>Ver perfil</ProfileButtonText>
               </ProfileButton>
               <ProfileButton
