@@ -52,6 +52,7 @@ export default class Main extends Component {
         alert('Usuário já adicionado!');
         this.setState({
           loading: false,
+          newUser: '',
         });
         return;
       }
@@ -74,7 +75,9 @@ export default class Main extends Component {
       alert('Usuário não encontrado!');
       this.setState({
         loading: false,
+        newUser: '',
       });
+      Keyboard.dismiss();
     }
   };
 

@@ -49,6 +49,7 @@ export default function Routes() {
           options={{
             title: 'Perfil do Usúario',
             headerTitleAlign: 'center',
+            headerTintColor: '#fff',
             headerStyle: {
               backgroundColor: '#3498db',
             },

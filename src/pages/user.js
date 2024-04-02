@@ -42,7 +42,7 @@ export default class User extends Component {
 
         <Stars
           data={stars}
-          keyExtractor={stars => String(star.id)}
+          keyExtractor={star => String(star.id)}
           renderItem={({item}) => (
             <Starred>
               <OwnerAvatar source={{uri: item.owner.avatar_url}} />
